@@ -108,6 +108,7 @@ namespace Записная_книжка
             try
             {
                 this.infoLabel.Text = "Выбрана таблица " + this.AllTables.SelectedItem.ToString();
+                this.UpdateDataGrid();
             }
             catch
             { }
