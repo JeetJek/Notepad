@@ -296,7 +296,7 @@ namespace Записная_книжка
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.AllTables = new System.Windows.Forms.ListBox();
             this.deleteTable = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.удалитьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -342,12 +342,12 @@ namespace Записная_книжка
             this.deleteTable.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.удалитьToolStripMenuItem1});
             this.deleteTable.Name = "deleteTable";
-            this.deleteTable.Size = new System.Drawing.Size(119, 26);
+            this.deleteTable.Size = new System.Drawing.Size(181, 48);
             // 
             // удалитьToolStripMenuItem1
             // 
             this.удалитьToolStripMenuItem1.Name = "удалитьToolStripMenuItem1";
-            this.удалитьToolStripMenuItem1.Size = new System.Drawing.Size(118, 22);
+            this.удалитьToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.удалитьToolStripMenuItem1.Text = "Удалить";
             this.удалитьToolStripMenuItem1.Click += new System.EventHandler(this.DeleteTable_Click);
             // 
@@ -440,14 +440,14 @@ namespace Записная_книжка
             this.db.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
             this.db.ColumnHeadersVisible = false;
             this.db.ContextMenuStrip = this.deleteMessage;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db.DefaultCellStyle = dataGridViewCellStyle2;
             this.db.Dock = System.Windows.Forms.DockStyle.Fill;
             this.db.Location = new System.Drawing.Point(0, 0);
             this.db.Name = "db";
@@ -524,7 +524,7 @@ namespace Записная_книжка
             this.send.UseVisualStyleBackColor = true;
             this.send.Click += new System.EventHandler(this.Send_Click);
             // 
-            // MainWindowRe
+            // MainWindow
             // 
             this.AcceptButton = this.send;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -539,7 +539,7 @@ namespace Записная_книжка
             this.Controls.Add(this.topMenu);
             this.KeyPreview = true;
             this.MainMenuStrip = this.topMenu;
-            this.Name = "MainWindowRe";
+            this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Записная книжка";
             this.Load += new System.EventHandler(this.MainWindow_Load);

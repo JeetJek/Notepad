@@ -105,7 +105,12 @@ namespace Записная_книжка
 
         private void TableChanged(object sender, EventArgs e)
         {
-            this.infoLabel.Text = "Выбрана таблица " + this.AllTables.SelectedItem.ToString();
+            try
+            {
+                this.infoLabel.Text = "Выбрана таблица " + this.AllTables.SelectedItem.ToString();
+            }
+            catch
+            { }
         }
 
         private void DeleteRecords_Click(object sender, EventArgs e)
@@ -123,7 +128,7 @@ namespace Записная_книжка
         {
             int selectedIndex = this.AllTables.SelectedIndex;
             string text = this.AllTables.Text;
-            this.AllTables.Items.RemoveAt(this.AllTables.SelectedIndex);
+            this.AllTables.Items.RemoveAt(selectedIndex);
             this.dBworker.DeleteTable(text);
             if (selectedIndex > 0)
             {
@@ -157,9 +162,11 @@ namespace Записная_книжка
 
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
-            if (!e.Control || e.KeyCode != Keys.N)
-                return;
-            this.newTable.PerformClick();
+            if (e.Control && e.KeyCode == Keys.N)
+                this.newTable.PerformClick();
+
+            if (e.Control && e.KeyCode == Keys.W)
+                Application.Exit();
         }
 
         private void Exit_Click(object sender, EventArgs e)
