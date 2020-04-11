@@ -104,6 +104,9 @@
     <Compile Include="MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddPassForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="NewPageForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,6 +119,9 @@
     <Compile Include="SettingsWorker.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="AddPassForm.resx">
+      <DependentUpon>AddPassForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -124,7 +130,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="Записная книжка_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="DotNetRtfWriter.dll">

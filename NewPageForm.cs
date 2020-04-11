@@ -1,10 +1,4 @@
-﻿// Decompiled with JetBrains decompiler
-// Type: Записная_книжка.NewPageForm
-// Assembly: Записная книжка, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: A0D518A3-D4BA-4371-9C44-D7D6E9D22E50
-// Assembly location: D:\Драгоценный исходник записной книжки\Записная книжка.exe
-
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Data.SQLite;
 using System.Drawing;

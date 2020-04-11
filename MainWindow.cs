@@ -5,8 +5,6 @@ using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace Записная_книжка
@@ -24,10 +22,8 @@ namespace Записная_книжка
             if (!File.Exists("Data.db"))
             {
                 SQLiteConnection.CreateFile("Data.db");
-                DataTable dataTable = this.dBworker.Execute(new SQLiteCommand("SELECT * FROM SETTINGS"));
-                if (dataTable.Rows.Count == 0)
-                    this.dBworker.CreateSettings();
-                dataTable.Dispose();
+                this.dBworker.CreateSettings();
+                this.dBworker.CreatePasswordsTable();
                 this.infoLabel.Text = "База создана";
             }
             else
@@ -36,6 +32,7 @@ namespace Записная_книжка
                 if (dataTable.Rows.Count == 0)
                     this.dBworker.CreateSettings();
                 dataTable.Dispose();
+                UpdatePassSaverDV();
                 this.infoLabel.Text = "Загружена БД";
             }
             this.tables = this.dBworker.GetTables();
@@ -58,7 +55,7 @@ namespace Записная_книжка
             this.trayIcon.Visible = true;
         }
 
-        private void UpdateDataGrid()
+        private void UpdateNotepadDV()
         {
             this.db.DataSource = (object)null;
             this.db.table = this.dBworker.LoadTable(this.AllTables.SelectedItem.ToString());
@@ -74,6 +71,17 @@ namespace Записная_книжка
             this.db.Columns["id"].Visible = false;
             this.db.Columns["time"].Width = 76;
         }
+        private void UpdatePassSaverDV()
+        {
+            this.PassDV.DataSource =null;
+            this.db.table = this.dBworker.LoadTable("passwords");
+            this.PassDV.DataSource =this.db.table;
+            this.PassDV.Columns["id"].Visible = false;
+            this.PassDV.Columns["pass"].Visible = false;
+            
+            this.PassDV.Columns["user"].HeaderText= "Пользователь";
+            this.PassDV.Columns["info"].HeaderText= "Пояснение";
+        }
 
         private void Send_Click(object sender, EventArgs e)
         {
@@ -82,7 +90,7 @@ namespace Записная_книжка
             this.dBworker.InsertMessage(this.AllTables.SelectedItem.ToString(), this.work.Text);
             this.work.Clear();
             this.infoLabel.Text = "Добавлена запись";
-            this.UpdateDataGrid();
+            this.UpdateNotepadDV();
             this.db.CurrentCell = this.db.Rows[this.db.Rows.Count - 1].Cells[1];
         }
 
@@ -108,7 +116,7 @@ namespace Записная_книжка
             try
             {
                 this.infoLabel.Text = "Выбрана таблица " + this.AllTables.SelectedItem.ToString();
-                this.UpdateDataGrid();
+                this.UpdateNotepadDV();
             }
             catch
             { }
@@ -122,7 +130,7 @@ namespace Записная_книжка
                 this.infoLabel.Text = "Удалена запись";
             for (int index = 0; index < this.db.SelectedRows.Count; ++index)
                 this.dBworker.DeleteMessage(this.AllTables.Text, int.Parse(this.db.SelectedRows[index].Cells[0].Value.ToString()));
-            this.UpdateDataGrid();
+            this.UpdateNotepadDV();
         }
 
         private void DeleteTable_Click(object sender, EventArgs e)
@@ -136,13 +144,13 @@ namespace Записная_книжка
                 if (selectedIndex < this.AllTables.Items.Count)
                 {
                     this.AllTables.SelectedIndex = selectedIndex;
-                    this.UpdateDataGrid();
+                    this.UpdateNotepadDV();
                     this.infoLabel.Text = "Удалена таблица";
                 }
                 else
                 {
                     this.AllTables.SelectedIndex = selectedIndex - 1;
-                    this.UpdateDataGrid();
+                    this.UpdateNotepadDV();
                     this.infoLabel.Text = "Удалена таблица";
                 }
             }
@@ -250,7 +258,7 @@ namespace Записная_книжка
                     int num = (int)MessageBox.Show(ex.ToString());
                 }
             }
-            this.UpdateDataGrid();
+            this.UpdateNotepadDV();
         }
 
         private void TrayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -258,7 +266,7 @@ namespace Записная_книжка
             this.WindowState = FormWindowState.Maximized;
         }
 
-        private void deleteMessage_Opening_1(object sender, CancelEventArgs e)
+        private void DeleteMessage_Opening_1(object sender, CancelEventArgs e)
         {
             this.копироватьToolStripMenuItem.DropDownItems.Clear();
             this.переместитьToolStripMenuItem.DropDownItems.Clear();
@@ -274,6 +282,44 @@ namespace Записная_книжка
                 toolStripButton.Click += new EventHandler(this.Move_Click);
                 this.переместитьToolStripMenuItem.DropDownItems.Add((ToolStripItem)toolStripButton);
             }
+        }
+
+        private void добавитьПарольToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            int x = 30 + this.Location.X;
+            int y = 10 + this.Location.Y + 50;
+            AddPassForm form1 = new AddPassForm();
+            form1.Location = new Point(x, y);
+            AddPassForm form2 = form1;
+            if (form2.ShowDialog() == DialogResult.OK)
+            {
+                this.infoLabel.Text = "Добавлен пароль";
+                UpdatePassSaverDV();
+            }
+            form2.Dispose();
+            form1.Dispose();
+        }
+
+        private void удалитьToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            if (this.PassDV.SelectedRows.Count > 1)
+                this.infoLabel.Text = "Удалены записи";
+            else
+                this.infoLabel.Text = "Удалена запись";
+            for (int index = 0; index < this.PassDV.SelectedRows.Count; ++index)
+                this.dBworker.DeleteMessage("passwords", int.Parse(this.PassDV.SelectedRows[index].Cells[0].Value.ToString()));
+            this.UpdatePassSaverDV();
+        }
+
+        private void PassDV_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                Clipboard.SetText(this.PassDV.SelectedRows[e.RowIndex].Cells[3].Value.ToString());
+            }
+            catch
+            { }
+            this.infoLabel.Text = "Скопировано";
         }
     }
 }
