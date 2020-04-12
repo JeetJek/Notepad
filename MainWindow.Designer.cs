@@ -309,7 +309,7 @@ namespace Записная_книжка
             this.work = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.infoLabel = new System.Windows.Forms.Label();
-            this.deleteMessage = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.NotepadConMenStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.копироватьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.переместитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -327,7 +327,7 @@ namespace Записная_книжка
             this.удалитьToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteTable.SuspendLayout();
             this.topMenu.SuspendLayout();
-            this.deleteMessage.SuspendLayout();
+            this.NotepadConMenStrip.SuspendLayout();
             this.trayExit.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.db)).BeginInit();
@@ -400,7 +400,7 @@ namespace Записная_книжка
             this.новыйПарольToolStripMenuItem.Name = "новыйПарольToolStripMenuItem";
             this.новыйПарольToolStripMenuItem.Size = new System.Drawing.Size(114, 20);
             this.новыйПарольToolStripMenuItem.Text = "Добавить пароль";
-            this.новыйПарольToolStripMenuItem.Click += new System.EventHandler(this.добавитьПарольToolStripMenuItem_Click);
+            this.новыйПарольToolStripMenuItem.Click += new System.EventHandler(this.добавитьПароль_Click);
             // 
             // отчётToolStripMenuItem
             // 
@@ -441,33 +441,33 @@ namespace Записная_книжка
             this.infoLabel.Size = new System.Drawing.Size(0, 13);
             this.infoLabel.TabIndex = 6;
             // 
-            // deleteMessage
+            // NotepadConMenStrip
             // 
-            this.deleteMessage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.NotepadConMenStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.копироватьToolStripMenuItem,
             this.переместитьToolStripMenuItem,
             this.удалитьToolStripMenuItem});
-            this.deleteMessage.Name = "deleting";
-            this.deleteMessage.Size = new System.Drawing.Size(147, 70);
-            this.deleteMessage.Text = "Удалить";
-            this.deleteMessage.Opening += new System.ComponentModel.CancelEventHandler(this.DeleteMessage_Opening_1);
+            this.NotepadConMenStrip.Name = "deleting";
+            this.NotepadConMenStrip.Size = new System.Drawing.Size(181, 92);
+            this.NotepadConMenStrip.Text = "Удалить";
+            this.NotepadConMenStrip.Opening += new System.ComponentModel.CancelEventHandler(this.NotepadContMenStrip_Openning);
             // 
             // копироватьToolStripMenuItem
             // 
             this.копироватьToolStripMenuItem.Name = "копироватьToolStripMenuItem";
-            this.копироватьToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.копироватьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.копироватьToolStripMenuItem.Text = "Копировать";
             // 
             // переместитьToolStripMenuItem
             // 
             this.переместитьToolStripMenuItem.Name = "переместитьToolStripMenuItem";
-            this.переместитьToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.переместитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.переместитьToolStripMenuItem.Text = "Переместить";
             // 
             // удалитьToolStripMenuItem
             // 
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.удалитьToolStripMenuItem.Text = "Удалить";
             this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.DeleteRecords_Click);
             // 
@@ -477,7 +477,7 @@ namespace Записная_книжка
             this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
             this.trayIcon.Text = "Записная книжка";
             this.trayIcon.Visible = true;
-            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayIcon_MouseDoubleClick_1);
+            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayIcon_MouseDoubleClick);
             // 
             // trayExit
             // 
@@ -512,7 +512,7 @@ namespace Записная_книжка
             this.db.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.db.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
             this.db.ColumnHeadersVisible = false;
-            this.db.ContextMenuStrip = this.deleteMessage;
+            this.db.ContextMenuStrip = this.NotepadConMenStrip;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -612,7 +612,7 @@ namespace Записная_книжка
             this.удалитьToolStripMenuItem2.Name = "удалитьToolStripMenuItem2";
             this.удалитьToolStripMenuItem2.Size = new System.Drawing.Size(118, 22);
             this.удалитьToolStripMenuItem2.Text = "Удалить";
-            this.удалитьToolStripMenuItem2.Click += new System.EventHandler(this.удалитьToolStripMenuItem2_Click);
+            this.удалитьToolStripMenuItem2.Click += new System.EventHandler(this.удалитьPass);
             // 
             // MainWindow
             // 
@@ -636,7 +636,7 @@ namespace Записная_книжка
             this.deleteTable.ResumeLayout(false);
             this.topMenu.ResumeLayout(false);
             this.topMenu.PerformLayout();
-            this.deleteMessage.ResumeLayout(false);
+            this.NotepadConMenStrip.ResumeLayout(false);
             this.trayExit.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.db)).EndInit();
@@ -660,7 +660,7 @@ namespace Записная_книжка
         private Label label1;
         private Label infoLabel;
         private DBView db;
-        private ContextMenuStrip deleteMessage;
+        private ContextMenuStrip NotepadConMenStrip;
         private ToolStripMenuItem удалитьToolStripMenuItem;
         private ContextMenuStrip deleteTable;
         private ToolStripMenuItem удалитьToolStripMenuItem1;

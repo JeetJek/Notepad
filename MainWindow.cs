@@ -87,11 +87,19 @@ namespace Записная_книжка
         {
             if (!(this.work.Text.Replace(" ", "") != ""))
                 return;
-            this.dBworker.InsertMessage(this.AllTables.SelectedItem.ToString(), this.work.Text);
-            this.work.Clear();
-            this.infoLabel.Text = "Добавлена запись";
-            this.UpdateNotepadDV();
-            this.db.CurrentCell = this.db.Rows[this.db.Rows.Count - 1].Cells[1];
+            if (AllTables.SelectedIndex >= 0)
+            {
+                this.dBworker.InsertMessage(this.AllTables.SelectedItem.ToString(), this.work.Text);
+                this.work.Clear();
+                this.infoLabel.Text = "Добавлена запись";
+                this.UpdateNotepadDV();
+                this.db.CurrentCell = this.db.Rows[this.db.Rows.Count - 1].Cells[1];
+            }
+            else
+            {
+                MessageBox.Show("Выберите таблицу");
+                this.work.Clear();
+            }
         }
 
         private void NewTable_Click(object sender, EventArgs e)
@@ -212,11 +220,6 @@ namespace Записная_книжка
             }
         }
 
-        private void Collapse(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
         private void Db_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             this.dBworker.UpdateMessage(this.AllTables.SelectedItem.ToString(), this.db[1, e.RowIndex].Value.ToString(), int.Parse(this.db[0, e.RowIndex].Value.ToString()));
@@ -253,11 +256,7 @@ namespace Записная_книжка
             this.UpdateNotepadDV();
         }
 
-        private void TrayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-        }
-
-        private void DeleteMessage_Opening_1(object sender, CancelEventArgs e)
+        private void NotepadContMenStrip_Openning(object sender, CancelEventArgs e)
         {
             this.копироватьToolStripMenuItem.DropDownItems.Clear();
             this.переместитьToolStripMenuItem.DropDownItems.Clear();
@@ -275,7 +274,7 @@ namespace Записная_книжка
             }
         }
 
-        private void добавитьПарольToolStripMenuItem_Click(object sender, EventArgs e)
+        private void добавитьПароль_Click(object sender, EventArgs e)
         {
             int x = 30 + this.Location.X;
             int y = 10 + this.Location.Y + 50;
@@ -291,7 +290,7 @@ namespace Записная_книжка
             form1.Dispose();
         }
 
-        private void удалитьToolStripMenuItem2_Click(object sender, EventArgs e)
+        private void удалитьPass(object sender, EventArgs e)
         {
             if (this.PassDV.SelectedRows.Count > 1)
                 this.infoLabel.Text = "Удалены записи";
@@ -320,7 +319,7 @@ namespace Записная_книжка
             e.Cancel = true;
         }
 
-        private void trayIcon_MouseDoubleClick_1(object sender, MouseEventArgs e)
+        private void trayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             this.WindowState = FormWindowState.Normal;
             this.ShowInTaskbar = true;
