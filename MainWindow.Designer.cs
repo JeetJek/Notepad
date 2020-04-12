@@ -296,7 +296,8 @@ namespace Записная_книжка
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.AllTables = new System.Windows.Forms.ListBox();
             this.deleteTable = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.удалитьToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -315,8 +316,8 @@ namespace Записная_книжка
             this.trayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.trayExit = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.выходToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.db = new Записная_книжка.DBView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.db = new Записная_книжка.DBView();
             this.send = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -328,8 +329,8 @@ namespace Записная_книжка
             this.topMenu.SuspendLayout();
             this.deleteMessage.SuspendLayout();
             this.trayExit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.db)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.db)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -473,9 +474,10 @@ namespace Записная_книжка
             // trayIcon
             // 
             this.trayIcon.ContextMenuStrip = this.trayExit;
+            this.trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("trayIcon.Icon")));
             this.trayIcon.Text = "Записная книжка";
             this.trayIcon.Visible = true;
-            this.trayIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TrayIcon_Click);
+            this.trayIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.trayIcon_MouseDoubleClick_1);
             // 
             // trayExit
             // 
@@ -491,33 +493,6 @@ namespace Записная_книжка
             this.выходToolStripMenuItem1.Text = "Выход";
             this.выходToolStripMenuItem1.Click += new System.EventHandler(this.TrayIconExit);
             // 
-            // db
-            // 
-            this.db.AllowUserToAddRows = false;
-            this.db.AllowUserToDeleteRows = false;
-            this.db.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.db.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
-            this.db.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
-            this.db.ColumnHeadersVisible = false;
-            this.db.ContextMenuStrip = this.deleteMessage;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.db.DefaultCellStyle = dataGridViewCellStyle2;
-            this.db.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.db.Location = new System.Drawing.Point(0, 0);
-            this.db.Name = "db";
-            this.db.RowHeadersVisible = false;
-            this.db.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.db.Size = new System.Drawing.Size(319, 394);
-            this.db.TabIndex = 0;
-            this.db.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.Db_CellEndEdit);
-            this.db.CurrentCellChanged += new System.EventHandler(this.Db_CurrentCellChanged);
-            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -528,6 +503,33 @@ namespace Записная_книжка
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(319, 394);
             this.panel1.TabIndex = 7;
+            // 
+            // db
+            // 
+            this.db.AllowUserToAddRows = false;
+            this.db.AllowUserToDeleteRows = false;
+            this.db.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.db.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.db.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
+            this.db.ColumnHeadersVisible = false;
+            this.db.ContextMenuStrip = this.deleteMessage;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.db.DefaultCellStyle = dataGridViewCellStyle1;
+            this.db.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.db.Location = new System.Drawing.Point(0, 0);
+            this.db.Name = "db";
+            this.db.RowHeadersVisible = false;
+            this.db.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.db.Size = new System.Drawing.Size(319, 394);
+            this.db.TabIndex = 0;
+            this.db.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.Db_CellEndEdit);
+            this.db.CurrentCellChanged += new System.EventHandler(this.Db_CurrentCellChanged);
             // 
             // send
             // 
@@ -603,12 +605,12 @@ namespace Записная_книжка
             this.deletePass.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.удалитьToolStripMenuItem2});
             this.deletePass.Name = "contextMenuStrip1";
-            this.deletePass.Size = new System.Drawing.Size(181, 48);
+            this.deletePass.Size = new System.Drawing.Size(119, 26);
             // 
             // удалитьToolStripMenuItem2
             // 
             this.удалитьToolStripMenuItem2.Name = "удалитьToolStripMenuItem2";
-            this.удалитьToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+            this.удалитьToolStripMenuItem2.Size = new System.Drawing.Size(118, 22);
             this.удалитьToolStripMenuItem2.Text = "Удалить";
             this.удалитьToolStripMenuItem2.Click += new System.EventHandler(this.удалитьToolStripMenuItem2_Click);
             // 
@@ -622,11 +624,13 @@ namespace Записная_книжка
             this.Controls.Add(this.infoLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.topMenu);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MainMenuStrip = this.topMenu;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Записная книжка";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindow_KeyDown);
             this.deleteTable.ResumeLayout(false);
@@ -634,8 +638,8 @@ namespace Записная_книжка
             this.topMenu.PerformLayout();
             this.deleteMessage.ResumeLayout(false);
             this.trayExit.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.db)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.db)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

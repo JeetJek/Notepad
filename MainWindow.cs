@@ -161,14 +161,6 @@ namespace Записная_книжка
             }
         }
 
-        private void TrayIcon_Click(object sender, MouseEventArgs e)
-        {
-            if (this.WindowState == FormWindowState.Normal)
-                this.WindowState = FormWindowState.Minimized;
-            else
-                this.WindowState = FormWindowState.Normal;
-        }
-
         private void MainWindow_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.N)
@@ -263,7 +255,6 @@ namespace Записная_книжка
 
         private void TrayIcon_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
         }
 
         private void DeleteMessage_Opening_1(object sender, CancelEventArgs e)
@@ -320,6 +311,19 @@ namespace Записная_книжка
             catch
             { }
             this.infoLabel.Text = "Скопировано";
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+            this.ShowInTaskbar = false;
+            e.Cancel = true;
+        }
+
+        private void trayIcon_MouseDoubleClick_1(object sender, MouseEventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+            this.ShowInTaskbar = true;
         }
     }
 }

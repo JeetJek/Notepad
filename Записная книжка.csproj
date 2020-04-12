@@ -135,6 +135,13 @@
     <Content Include="DotNetRtfWriter.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\add.png" />
+    <Content Include="Resources\exit.png" />
+    <Content Include="Resources\icon.ico" />
+    <Content Include="Resources\insert.png" />
+    <Content Include="Resources\insert6060.png" />
+    <Content Include="Resources\settings.png" />
+    <Content Include="Resources\update.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
